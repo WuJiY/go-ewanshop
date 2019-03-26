@@ -1,0 +1,5 @@
+/test/
+*.exe
+/vendor/
+debug
+.vscode/
