@@ -26,3 +26,5 @@ func (u *CatesModel)Insert(docs ...interface{}) error{
 func (u *CatesModel)FindOne(query,selector, result interface{}) error {
 	return FindOne(u.dbName, u.collectionName,query,selector, result)
 }
+
+
