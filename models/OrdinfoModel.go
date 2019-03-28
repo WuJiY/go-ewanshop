@@ -1,4 +1,4 @@
-package mongo_models
+package models
 
 import "github.com/globalsign/mgo/bson"
 

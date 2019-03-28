@@ -1,11 +1,11 @@
-package mongo_models
+package models
 
 import (
 	"github.com/globalsign/mgo/bson"
 	"time"
 )
 
-type Goods struct {
+type Good struct {
 	Id       bson.ObjectId `bson:"_id"`
 	Goods_name string `bson:"goods_name"`
 	Cat_id  string `bson:"cat_id"`

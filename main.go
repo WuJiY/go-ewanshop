@@ -5,15 +5,17 @@ import (
 	"net/http"
 	"runtime/debug"
 
-	_ "github.com/mattn/go-sqlite3"
-	"github.com/zengming00/go-testShop/framework"
-	"github.com/zengming00/go-testShop/lib"
-	"github.com/zengming00/go-testShop/models"
-	"github.com/zengming00/go-testShop/routes"
-	"github.com/zengming00/go-testShop/routes/admin"
-	"github.com/zengming00/go-testShop/routes/flow"
-	"github.com/zengming00/go-testShop/routes/user"
+
+	"github.com/haolifeng/go-testShop/framework"
+	"github.com/haolifeng/go-testShop/lib"
+	"github.com/haolifeng/go-testShop/models"
+
+	"github.com/haolifeng/go-testShop/routes"
+	"github.com/haolifeng/go-testShop/routes/admin"
+	"github.com/haolifeng/go-testShop/routes/flow"
+	"github.com/haolifeng/go-testShop/routes/user"
 )
+
 
 var cates *models.CatesModel
 var goods *models.GoodsModel
@@ -51,12 +53,18 @@ func mHandle(h func(ctx *framework.HandlerContext)) HandleFunc {
 }
 
 func main() {
-	var db = models.OpenDB()
-	cates = models.NewCatesModel(db)
-	goods = models.NewGoodsModel(db)
-	users = models.NewUsersModel(db)
-	ordinfos = models.NewOrdinfosModel(db)
-	ordgoods = models.NewOrdgoodsModel(db)
+	//var db = models.OpenDB()
+	models.CreateDB()
+	//cates = models.NewCatesModel(db)
+	cates = models.CreateCatMode(models.DbName,models.CateCollection)
+	//goods = models.NewGoodsModel(db)
+	goods = models.CreateGoodstMode(models.DbName,models.GoodsCollection)
+    //users = models.NewUsersModel(db)
+    users = models.CreateUsersMode(models.DbName,models.UserCollection)
+	//ordinfos = models.NewOrdinfosModel(db)
+	ordinfos = models.CreateOrdinfosMode(models.DbName,models.OrdInfoCollection)
+	//ordgoods = models.NewOrdgoodsModel(db)
+	ordgoods = models.CreateOrdgoodsMode(models.DbName,models.OrdgoodsCollection)
 
 	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
 

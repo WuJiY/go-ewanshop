@@ -1,4 +1,4 @@
-package mongo_models
+package models
 
 import "github.com/globalsign/mgo/bson"
 
@@ -20,23 +20,23 @@ type User struct {
 
 
 
-type UserModel struct {
+type UsersModel struct {
 	dbName string
 	collectionName  string
 
 }
 
-func CreateUserMode(db, cn string) *UserModel{
-	return &UserModel{
+func CreateUsersMode(db, cn string) *UsersModel{
+	return &UsersModel{
 		dbName:db,
 		collectionName:cn,
 	}
 }
 
-func (u *UserModel)Insert(docs ...interface{}) error{
+func (u *UsersModel)Insert(docs ...interface{}) error{
 	return Insert(u.dbName,u.collectionName,docs)
 }
-func (u *UserModel)FindOne(query,selector, result interface{}) error {
+func (u *UsersModel)FindOne(query,selector, result interface{}) error {
 	return FindOne(u.dbName, u.collectionName,query,selector, result)
 }
 
