@@ -37,3 +37,13 @@ func (u *GoodsModel)Insert(docs ...interface{}) error{
 func (u *GoodsModel)FindOne(query,selector, result interface{}) error {
 	return FindOne(u.dbName, u.collectionName,query,selector, result)
 }
+
+
+func (u *GoodsModel)Count(map[string]interface{}) int{
+	return 0;
+}
+
+func (u *GoodsModel)Find(map[string]interface{},map[string]interface{}) []Good{
+	return nil
+
+}

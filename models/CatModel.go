@@ -28,3 +28,9 @@ func (u *CatesModel)FindOne(query,selector, result interface{}) error {
 }
 
 
+func (u *CatesModel)Find() *[]Cate{
+	return nil
+}
+func (u *CatesModel)GetChildCates(allCate *[]Cate, catid string) []string {
+	return nil
+}
