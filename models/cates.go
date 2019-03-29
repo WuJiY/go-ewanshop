@@ -1,7 +1,9 @@
 package models
 
 import (
+	"fmt"
 	"github.com/globalsign/mgo/bson"
+	"github.com/wanchain/go-wanchain/log"
 	"time"
 )
 
@@ -17,13 +19,11 @@ func NewCatesModel() *CatesModel {
 }
 
 type CateTreeItem struct {
-	Id bson.ObjectId  `bson:"_id"`
-	Oid       string  `bson:"oid"`
-	Cat_name  string  `bson:"cat_name"`
-	Intro     string `bson:"intro"`
-	Parent_id string	`bson:"parent_id"`
-	Level     int	`bson:"level"`
-	CreatedAt time.Time `bson:"createdAt"`
+	Oid       string
+	Cat_name  string
+	Intro     string
+	Parent_id string
+	Level     int
 }
 
 func (c *CatesModel) GetTree(rows []*Cate) []*CateTreeItem {
@@ -82,17 +82,21 @@ func (c *CatesModel) GetChildCates(rows []*Cate, catid string) []string {
 }
 
 func (c *CatesModel) Find() []*Cate {
-
-	return nil
+	var cates []*Cate
+	err := FindAll(DbName,c.Collection,bson.M{},bson.M{},&cates)
+	if(err != nil){
+		fmt.Println("err is", err)
+	}
+	return cates
 }
 
 type Cate struct {
-	Id         int
-	Oid        string
-	Cat_name   string
-	Intro      string
-	Parent_id  string
-	Created_at string
+	Id         bson.ObjectId 	`bson:"_id"`
+	Oid        string    `bson:"oid"`
+	Cat_name   string	`bson:"cat_name"`
+	Intro      string	`bson:"intro"`
+	Parent_id  string	`bson:"parent_id"`
+	CreateAt   time.Time   `bson:"createdAt"`
 }
 
 func (c *CatesModel) Query(sql string, params ...interface{}) (interface{}, error) {
@@ -100,9 +104,13 @@ func (c *CatesModel) Query(sql string, params ...interface{}) (interface{}, erro
 	return nil, nil
 }
 
-func (c *CatesModel) Add(data map[string]interface{}) *DMLResult {
-
-	return nil
+func (c *CatesModel) Add(data map[string]interface{})  {
+	err := Insert(DbName,c.Collection,&data)
+	if(err != nil ){
+		fmt.Println("err is ", err)
+	}else{
+		log.Info("add one cate in db")
+	}
 }
 
 func (c *CatesModel) DelByOid(oid string) *DMLResult {

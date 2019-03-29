@@ -4,6 +4,7 @@ import (
 	"github.com/haolifeng/go-ewanshop/framework"
 	"github.com/haolifeng/go-ewanshop/lib"
 	"github.com/haolifeng/go-ewanshop/models"
+	"time"
 )
 
 func CateAdd(ctx *framework.HandlerContext) {
@@ -30,6 +31,7 @@ func CateAdd(ctx *framework.HandlerContext) {
 			"intro":     ctx.R.FormValue("cat_desc"),
 			"parent_id": ctx.R.FormValue("parent_id"),
 			"oid":       models.MakeOid(),
+			"createAt": time.Now(),
 		}
 		ctx.Cates.Add(data)
 		ctx.Redirect("./catelist.go")
