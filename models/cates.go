@@ -1,25 +1,29 @@
 package models
 
 import (
-	"database/sql"
+	"github.com/globalsign/mgo/bson"
+	"time"
 )
 
-
-
 type CatesModel struct {
+	Collection string
 
 }
 
-func NewCatesModel(db *sql.DB) *CatesModel {
-	return nil
+func NewCatesModel() *CatesModel {
+	return &CatesModel{
+		Collection:"cates",
+	}
 }
 
 type CateTreeItem struct {
-	Oid       string
-	Cat_name  string
-	Intro     string
-	Parent_id string
-	Level     int
+	Id bson.ObjectId  `bson:"_id"`
+	Oid       string  `bson:"oid"`
+	Cat_name  string  `bson:"cat_name"`
+	Intro     string `bson:"intro"`
+	Parent_id string	`bson:"parent_id"`
+	Level     int	`bson:"level"`
+	CreatedAt time.Time `bson:"createdAt"`
 }
 
 func (c *CatesModel) GetTree(rows []*Cate) []*CateTreeItem {

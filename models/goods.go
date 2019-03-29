@@ -1,15 +1,14 @@
 package models
 
-import (
-	"database/sql"
-)
-
 type GoodsModel struct {
+	Collection string
 
 }
 
-func NewGoodsModel(db *sql.DB) *GoodsModel {
-	return nil
+func NewGoodsModel() *GoodsModel {
+	return &GoodsModel{
+		Collection:"goods",
+	}
 }
 
 func (g *GoodsModel) GetByOid(oid string) *Good {

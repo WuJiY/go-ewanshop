@@ -1,9 +1,18 @@
 package models
 
 import (
-	"database/sql"
+	"github.com/globalsign/mgo"
+	"log"
 )
 
-func OpenDB() *sql.DB {
-   return nil
+const (
+	DbName = "goewanshop"
+)
+
+func OpenDB() {
+	s, err := mgo.Dial(dbhost)
+	if err != nil {
+		log.Fatalf("Create Session: %s\n", err)
+	}
+	globalS = s
 }

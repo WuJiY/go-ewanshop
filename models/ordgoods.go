@@ -1,15 +1,14 @@
 package models
 
-import (
-	"database/sql"
-)
-
 type OrdgoodsModel struct {
+	Collection string
 
 }
 
-func NewOrdgoodsModel(db *sql.DB) *OrdgoodsModel {
-	return nil
+func NewOrdgoodsModel() *OrdgoodsModel {
+	return &OrdgoodsModel{
+		Collection:"ordgoods",
+	}
 }
 
 func (o *OrdgoodsModel) Add(data map[string]interface{}) *DMLResult {

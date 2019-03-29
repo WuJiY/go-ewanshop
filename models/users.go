@@ -1,15 +1,14 @@
 package models
 
-import (
-	msql "database/sql"
-)
-
 type UsersModel struct {
-
+	Collection string
 }
 
-func NewUsersModel(db *msql.DB) *UsersModel {
-	return nil
+func NewUsersModel() *UsersModel {
+
+	return &UsersModel{
+		Collection:"users",
+	}
 }
 
 func (u *UsersModel) Count(where map[string]interface{}) int {

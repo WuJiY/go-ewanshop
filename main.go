@@ -51,12 +51,12 @@ func mHandle(h func(ctx *framework.HandlerContext)) HandleFunc {
 }
 
 func main() {
-	var db = models.OpenDB()
-	cates = models.NewCatesModel(db)
-	goods = models.NewGoodsModel(db)
-	users = models.NewUsersModel(db)
-	ordinfos = models.NewOrdinfosModel(db)
-	ordgoods = models.NewOrdgoodsModel(db)
+	 models.OpenDB()
+	cates = models.NewCatesModel()
+	goods = models.NewGoodsModel()
+	users = models.NewUsersModel()
+	ordinfos = models.NewOrdinfosModel()
+	ordgoods = models.NewOrdgoodsModel()
 
 	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
 
