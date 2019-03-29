@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/zengming00/go-testShop/lib"
-	"github.com/zengming00/go-testShop/models"
+	"github.com/haolifeng/go-ewanshop/lib"
+	"github.com/haolifeng/go-ewanshop/models"
 )
 
 type HandlerContext struct {

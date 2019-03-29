@@ -3,8 +3,8 @@ package routes
 import (
 	"html/template"
 
-	"github.com/zengming00/go-testShop/framework"
-	"github.com/zengming00/go-testShop/lib"
+	"github.com/haolifeng/go-ewanshop/framework"
+	"github.com/haolifeng/go-ewanshop/lib"
 )
 
 func Category(ctx *framework.HandlerContext) {

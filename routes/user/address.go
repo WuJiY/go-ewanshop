@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/zengming00/go-testShop/framework"
-	"github.com/zengming00/go-testShop/lib"
+	"github.com/haolifeng/go-ewanshop/framework"
+	"github.com/haolifeng/go-ewanshop/lib"
 )
 
 func Address(ctx *framework.HandlerContext) {

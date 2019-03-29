@@ -3,8 +3,8 @@ package routes
 import (
 	"image/png"
 
-	"github.com/zengming00/go-testShop/framework"
-	"github.com/zengming00/go-testShop/lib/image"
+	"github.com/haolifeng/go-ewanshop/framework"
+	"github.com/haolifeng/go-ewanshop/lib/image"
 )
 
 func Capcha(ctx *framework.HandlerContext) {

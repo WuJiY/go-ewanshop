@@ -6,13 +6,13 @@ import (
 	"runtime/debug"
 
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/zengming00/go-testShop/framework"
-	"github.com/zengming00/go-testShop/lib"
-	"github.com/zengming00/go-testShop/models"
-	"github.com/zengming00/go-testShop/routes"
-	"github.com/zengming00/go-testShop/routes/admin"
-	"github.com/zengming00/go-testShop/routes/flow"
-	"github.com/zengming00/go-testShop/routes/user"
+	"github.com/haolifeng/go-ewanshop/framework"
+	"github.com/haolifeng/go-ewanshop/lib"
+	"github.com/haolifeng/go-ewanshop/models"
+	"github.com/haolifeng/go-ewanshop/routes"
+	"github.com/haolifeng/go-ewanshop/routes/admin"
+	"github.com/haolifeng/go-ewanshop/routes/flow"
+	"github.com/haolifeng/go-ewanshop/routes/user"
 )
 
 var cates *models.CatesModel

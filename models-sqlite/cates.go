@@ -9,7 +9,7 @@ type CatesModel struct {
 }
 
 func NewCatesModel(db *sql.DB) *CatesModel {
-	return nil
+	return &CatesModel{db}
 }
 
 type CateTreeItem struct {
@@ -76,8 +76,11 @@ func (c *CatesModel) GetChildCates(rows []*Cate, catid string) []string {
 }
 
 func (c *CatesModel) Find() []*Cate {
-
-	return nil
+	r, err := c.Query("select * from cates")
+	if err != nil {
+		panic(err)
+	}
+	return r.([]*Cate)
 }
 
 type Cate struct {
@@ -90,26 +93,57 @@ type Cate struct {
 }
 
 func (c *CatesModel) Query(sql string, params ...interface{}) (interface{}, error) {
-
-	return nil, nil
+	rows, err := c.db.Query(sql, params...)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var ret = make([]*Cate, 0)
+	for rows.Next() {
+		cate := &Cate{}
+		var err = rows.Scan(&cate.Id, &cate.Oid, &cate.Cat_name, &cate.Intro, &cate.Parent_id, &cate.Created_at)
+		if err != nil {
+			return nil, err
+		}
+		ret = append(ret, cate)
+	}
+	err = rows.Err()
+	if err != nil {
+		return nil, err
+	}
+	return ret, nil
 }
 
 func (c *CatesModel) Add(data map[string]interface{}) *DMLResult {
-
-	return nil
+	var ret, err = Add(c.db, "cates", data)
+	if err != nil {
+		panic(err)
+	}
+	return ret
 }
 
 func (c *CatesModel) DelByOid(oid string) *DMLResult {
-
-	return nil
+	r, err := DML(c.db, "delete from cates where oid=?", oid)
+	if err != nil {
+		panic(err)
+	}
+	return r
 }
 
 func (c *CatesModel) GetByOid(oid string) []*Cate {
-
-	return nil
+	r, err := c.Query("select * from cates where oid = ?", oid)
+	if err != nil {
+		panic(err)
+	}
+	return r.([]*Cate)
 }
 
 func (c *CatesModel) UpdateByOid(oid string, data map[string]interface{}) *DMLResult {
-
-	return nil
+	var r = ExportKeyValues(data)
+	var sql = MakeUpdateSql("cates", r.Keys, "oid")
+	var ret, err = DML(c.db, sql, append(r.Values, oid)...)
+	if err != nil {
+		panic(err)
+	}
+	return ret
 }

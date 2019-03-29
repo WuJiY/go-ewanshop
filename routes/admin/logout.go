@@ -1,6 +1,6 @@
 package admin
 
-import "github.com/zengming00/go-testShop/framework"
+import "github.com/haolifeng/go-ewanshop/framework"
 
 func Logout(ctx *framework.HandlerContext) {
 	// ctx.SetSessionVal("isAdmin", false)

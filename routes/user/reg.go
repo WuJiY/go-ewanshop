@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/zengming00/go-testShop/framework"
-	"github.com/zengming00/go-testShop/lib"
-	"github.com/zengming00/go-testShop/models"
+	"github.com/haolifeng/go-ewanshop/framework"
+	"github.com/haolifeng/go-ewanshop/lib"
+	"github.com/haolifeng/go-ewanshop/models"
 )
 
 func Reg(ctx *framework.HandlerContext) {

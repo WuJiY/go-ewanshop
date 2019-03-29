@@ -5,52 +5,36 @@ import (
 )
 
 type UsersModel struct {
-	db *msql.DB
+
 }
 
 func NewUsersModel(db *msql.DB) *UsersModel {
-	return &UsersModel{db}
+	return nil
 }
 
 func (u *UsersModel) Count(where map[string]interface{}) int {
-	var ret, err = Count(u.db, "users", where)
-	if err != nil {
-		panic(err)
-	}
-	return ret
+
+	return 0
 }
 
 func (u *UsersModel) Add(data map[string]interface{}) *DMLResult {
-	var ret, err = Add(u.db, "users", data)
-	if err != nil {
-		panic(err)
-	}
-	return ret
+
+	return nil
 }
 
 func (u *UsersModel) DelByOid(oid string) *DMLResult {
-	var ret, err = DML(u.db, "users", "delete from goods where oid=?", oid)
-	if err != nil {
-		panic(err)
-	}
-	return ret
+
+	return nil
 }
 
 func (u *UsersModel) GetByOid(oid string) *User {
-	var us = u.Find(map[string]interface{}{"oid": oid}, nil)
-	if 0 < len(us) {
-		return us[0]
-	}
+
 	return nil
 }
 
 func (u *UsersModel) Find(where, opt map[string]interface{}) []*User {
-	var sql = "select * from users"
-	var ret, err = Find(sql, where, opt, u.Query)
-	if err != nil {
-		panic(err)
-	}
-	return ret.([]*User)
+
+	return nil
 }
 
 type User struct {
@@ -66,38 +50,11 @@ type User struct {
 }
 
 func (u *UsersModel) Query(sql string, params ...interface{}) (interface{}, error) {
-	rows, err := u.db.Query(sql, params...)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-	var ret = make([]*User, 0)
-	for rows.Next() {
-		var addr = &msql.NullString{}
-		var user = &User{}
-		var err = rows.Scan(&user.Id, &user.Oid, &user.UserName, &user.Phone, &user.Email,
-			&user.Password, &user.Salt, addr, &user.Created_at)
-		if err != nil {
-			return nil, err
-		}
-		if addr.Valid {
-			user.Address = addr.String
-		}
-		ret = append(ret, user)
-	}
-	err = rows.Err()
-	if err != nil {
-		return nil, err
-	}
-	return ret, nil
+
+	return nil, nil
 }
 
 func (u *UsersModel) UpdateByOid(oid string, data map[string]interface{}) *DMLResult {
-	var r = ExportKeyValues(data)
-	var sql = MakeUpdateSql("users", r.Keys, "oid")
-	var ret, err = DML(u.db, sql, append(r.Values, oid)...)
-	if err != nil {
-		panic(err)
-	}
-	return ret
+
+	return nil
 }

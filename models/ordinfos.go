@@ -5,36 +5,26 @@ import (
 )
 
 type OrdinfosModel struct {
-	db *sql.DB
+
 }
 
 func NewOrdinfosModel(db *sql.DB) *OrdinfosModel {
-	return &OrdinfosModel{db}
+	return nil
 }
 
 func (o *OrdinfosModel) Add(data map[string]interface{}) *DMLResult {
-	var ret, err = Add(o.db, "ordinfos", data)
-	if err != nil {
-		panic(err)
-	}
-	return ret
+
+	return nil
 }
 
 func (o *OrdinfosModel) GetByOid(oid string) *Ordinfo {
-	var v = o.Find(map[string]interface{}{"oid": oid}, nil)
-	if 0 < len(v) {
-		return v[0]
-	}
+
 	return nil
 }
 
 func (o *OrdinfosModel) Find(where, opt map[string]interface{}) []*Ordinfo {
-	var sql = "select * from ordinfos"
-	r, err := Find(sql, where, opt, o.Query)
-	if err != nil {
-		panic(err)
-	}
-	return r.([]*Ordinfo)
+
+	return nil
 }
 
 type Ordinfo struct {
@@ -52,24 +42,6 @@ type Ordinfo struct {
 }
 
 func (o *OrdinfosModel) Query(sql string, params ...interface{}) (interface{}, error) {
-	rows, err := o.db.Query(sql, params...)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-	var ret = make([]*Ordinfo, 0)
-	for rows.Next() {
-		var ord = &Ordinfo{}
-		var err = rows.Scan(&ord.Id, &ord.Oid, &ord.OrdId, &ord.UserId, &ord.UserName,
-			&ord.Address, &ord.PayType, &ord.PayState, &ord.Money, &ord.Fuyan, &ord.Created_at)
-		if err != nil {
-			return nil, err
-		}
-		ret = append(ret, ord)
-	}
-	err = rows.Err()
-	if err != nil {
-		return nil, err
-	}
-	return ret, nil
+
+	return nil, nil
 }

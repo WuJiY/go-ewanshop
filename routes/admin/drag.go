@@ -1,7 +1,7 @@
 package admin
 
 import (
-	"github.com/zengming00/go-testShop/framework"
+	"github.com/haolifeng/go-ewanshop/framework"
 )
 
 func Drag(ctx *framework.HandlerContext) {

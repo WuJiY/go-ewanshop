@@ -1,7 +1,7 @@
 package user
 
 import (
-	"github.com/zengming00/go-testShop/framework"
+	"github.com/haolifeng/go-ewanshop/framework"
 )
 
 func Logout(ctx *framework.HandlerContext) {
