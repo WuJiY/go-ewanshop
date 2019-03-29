@@ -4,8 +4,10 @@ import (
 	"database/sql"
 )
 
+
+
 type CatesModel struct {
-	db *sql.DB
+
 }
 
 func NewCatesModel(db *sql.DB) *CatesModel {
