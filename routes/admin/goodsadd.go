@@ -1,12 +1,12 @@
 package admin
 
 import (
-	"fmt"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/haolifeng/go-ewanshop/framework"
 	"github.com/haolifeng/go-ewanshop/lib"
@@ -83,11 +83,12 @@ func GoodsAdd(ctx *framework.HandlerContext) {
 			"is_hot":       lib.ParsePositiveInt(ctx.R.FormValue("is_hot"), 0),
 			"is_on_sale":   lib.ParsePositiveInt(ctx.R.FormValue("is_on_sale"), 0),
 			"goods_img":    publicPath,
+			"createAt" : time.Now(),
 		}
 
-		var result = ctx.Goods.Add(data)
-		fmt.Printf("%#v\n", result)
-		// ctx.Json(data)
+		 ctx.Goods.Add(data)
+		//fmt.Printf("%#v\n", result)
+		 ctx.Json(data)
 		ctx.Redirect("./goodslist.go")
 	}
 }

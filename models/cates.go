@@ -3,7 +3,6 @@ package models
 import (
 	"fmt"
 	"github.com/globalsign/mgo/bson"
-	"github.com/wanchain/go-wanchain/log"
 	"time"
 )
 
@@ -109,7 +108,8 @@ func (c *CatesModel) Add(data map[string]interface{})  {
 	if(err != nil ){
 		fmt.Println("err is ", err)
 	}else{
-		log.Info("add one cate in db")
+		//log.Info("add one cate in db")
+		fmt.Println("add one cate in db")
 	}
 }
 

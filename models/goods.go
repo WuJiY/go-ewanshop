@@ -1,5 +1,12 @@
 package models
 
+import (
+	"fmt"
+	"github.com/globalsign/mgo/bson"
+	"log"
+	"time"
+)
+
 type GoodsModel struct {
 	Collection string
 
@@ -17,13 +24,24 @@ func (g *GoodsModel) GetByOid(oid string) *Good {
 }
 
 func (g *GoodsModel) Find(where, opt map[string]interface{}) []*Good {
+	var goods []*Good
+	err := FindAll(DbName,g.Collection,bson.M{},bson.M{},&goods)
+	if(err != nil){
+		fmt.Println("err is", err)
+	}
+	return goods
 
-	return nil
 }
 
-func (g *GoodsModel) Add(data map[string]interface{}) *DMLResult {
+func (g *GoodsModel) Add(data map[string]interface{}){
+	err := Insert(DbName,g.Collection,&data)
+	if(err != nil ){
+		fmt.Println("err is ", err)
+	}else{
+		//log.Info("add one cate in db")
+		log.Println("add one goods in db")
+	}
 
-	return nil
 }
 
 func (g *GoodsModel) DelByOid(oid string) *DMLResult {
@@ -49,8 +67,8 @@ type Good struct {
 	Is_new       int
 	Is_hot       int
 	Is_on_sale   int
-	Created_at   string
-	Updated_at   string
+	Created_at   time.Time  `bson:"createAt"`
+	Updated_at   time.Time
 }
 
 func (g *GoodsModel) Query(sql string, params ...interface{}) (interface{}, error) {

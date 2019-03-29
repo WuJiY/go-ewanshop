@@ -2,6 +2,7 @@ package lib
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 )
@@ -23,7 +24,9 @@ func GetDateDir() *DateDir {
 	var dir = fmt.Sprintf("/public/uploads/%.4d/%.2d/%.2d/", date.Year(), int(date.Month()), date.Day())
 	var path = filepath.Join(baseDir, dir)
 
-	err = os.MkdirAll(path, 0666)
+	log.Println("path is" ,path)
+
+	err = os.MkdirAll(path, 0766)
 	if err != nil {
 		panic(err)
 	}

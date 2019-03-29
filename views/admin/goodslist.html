@@ -71,7 +71,7 @@
   </tr>
 {{range .goods}}
   <tr>
-    <td class="id-cell"><input type="checkbox" name="checkboxes[]" value="32" />{{toDateStr .Created_at}}</td>
+    <td class="id-cell"><input type="checkbox" name="checkboxes[]" value="32" />{{ .Created_at.Format "Jan 02, 2006 15:04:05 UTC"}}</td>
     <td class="first-cell" style="text-align:left"><span >{{.Goods_name}}</span></td>
     <td align="right"><span >{{.Shop_price}}</span></td>
     <td align="center"><img src="/public/admin/images/{{if eq .Is_on_sale 1}}yes{{else}}no{{end}}.gif"  /></td>
